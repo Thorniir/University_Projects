@@ -1,69 +1,47 @@
 #include <iostream>
 #include <conio.h>
-
+#include <cmath>
 using namespace std;
- 
 
 int main()
 {
-	cout.precision(15);
-
-	double  suma=0 , old;
-	int b = 1, potega;
-		for(;;)
-		{
-			cout << "Podaj wartosc potegi: "; cin >> potega;
-		cout << endl;
-		suma = 0;
-		b = 1;
-	for (int n = 0; n < 1000; n++)
-	{
-
-
-	  double mianownik =  pow(b, potega);
-
-		suma +=   1 / mianownik;
-
-		b++;
-
-	}
-	cout << "Dla petli for: " << suma << endl;
+	double suma = 0, old = 1; 
+	int potega;
+	cout.precision(20);
  
 
-	suma = 0;
-	b = 1;	
-
-	while (b < 10000)
+	cout << "Podaj potege: ";
+	cin >> potega;
+	for (int i = 1; i < 1000; i++)
 	{
-		 
-		
-		suma +=   1 / pow(b, potega);
+		suma +=  (1 / pow(double(i), potega));
+	}
+	cout << "Petla for: " << suma << endl;
+
+	 
+	suma = 0; 
+	
+	double exp = 0.000000001;
+	int b = 1;
+	double z = 0;
+	do
+	{
+		z = (1 / pow(double(b), potega));
+		suma += z;
 		b++;
-	}cout << "Dla petli while: " << suma << endl;
-	
-	
+	} while (z > exp);
+	cout << "Petla do while: " << suma << endl;
 	
 
 	suma = 0;
 	b = 1;
-	 
-	do {
-
-		old= suma;
-	  	 
-		suma +=   1 / pow(b, potega);
-	
+	while (suma != old)
+	{
+		old = suma;
+		suma += (1 / pow(double(b), potega));
 		b++;
- 
-
-	} while (suma!=old);
-	cout << "Dla petli do while: " << suma;
-	cout << endl;
-	cout << endl;
-		}
-	
-	
-
+	}
+	cout << "Petla while: " << suma << endl;
 	_getch();
 	return 0;
 }
